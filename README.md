@@ -20,7 +20,7 @@ docker pull abcum/orientdb
 docker run --name orient -h $(hostname) -e IP=`ip route | awk '/eth1/ { print  $9 }'` -e MEMBERS=172.17.8.101-103 -p 2424:2424 -p 2480:2480 -p 5701:5701 -d abcum/orientdb
 
 # Example using Amazon with auto discovery
-docker run --name orient -h $(hostname) -e IP=`ip route | awk '/default/ { print  $9 }'` -e TCP=false -e AWS=true -e AWS_ACCESS_KEY='AKIAIOSFODNN7EXAMPLE' -e AWS_SECRET_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY -e AWS -p 2424:2424 -p 2480:2480 -p 5701:5701 -d abcum/orientdb
+docker run --name orient -h $(hostname) -e IP=`ip route | awk '/default/ { print  $9 }'` -e TCP=false -e AWS=true -e AWS_ACCESS_KEY='AKIAIOSFODNN7EXAMPLE' -e AWS_SECRET_KEY='wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY' -p 2424:2424 -p 2480:2480 -p 5701:5701 -d abcum/orientdb
 ```
 
 ### Environment variables
