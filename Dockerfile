@@ -10,7 +10,7 @@ RUN yum install -y tar java-1.7.0-openjdk-headless
 
 # Install
 
-RUN curl -o orientdb.tar.gz https://abcum-deploy.s3.amazonaws.com/orient/orientdb-community-2.0.3.tar.gz && mkdir -p /opt/orient && tar -zxvf orientdb.tar.gz --strip-components=1 --directory /opt/orient && rm -rf orientdb.tar.gz
+RUN curl -o orientdb.tar.gz https://abcum-deploy.s3.amazonaws.com/orient/orientdb-community-2.0.4.tar.gz && mkdir -p /opt/orient && tar -zxvf orientdb.tar.gz --strip-components=1 --directory /opt/orient && rm -rf orientdb.tar.gz
 
 # Configs
 
