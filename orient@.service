@@ -1,0 +1,12 @@
+[Unit]
+Description=OrientDB Service
+
+[Service]
+User=core
+TimeoutStartSec=0
+EnvironmentFile=/etc/environment
+ExecStartPre=-/usr/bin/docker kill orient
+ExecStartPre=-/usr/bin/docker rm orient
+ExecStartPre=/usr/bin/docker pull abcum/orientdb
+ExecStart=/usr/bin/docker run --name orient -e PUBLIC_IP=${COREOS_PUBLIC_IPV4} -e PRIVATE_IP=${COREOS_PRIVATE_IPV4} -p 2424:2424 -p 2480:2480 -p 5701:5701 abcum/orientdb
+ExecStop=/usr/bin/docker stop orient
