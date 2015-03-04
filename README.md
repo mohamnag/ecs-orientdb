@@ -37,14 +37,14 @@ Specify other member nodes for TCP-IP discovery
 ##### `AWS` (default `false`)
 Specify whether Hazelcast should use Amazon EC2 Auto discovery
 
+##### `AWS_REGION` (default `eu-west-1`)
+Specify the Amazon region to use for Amazon EC2 Auto discovery
+
 ##### `AWS_ACCESS_KEY` (default `NOTSET`)
 Specify the Amazon access key to use for Amazon EC2 Auto discovery
 
 ##### `AWS_SECRET_KEY` (default `NOTSET`)
 Specify the Amazon secret key to use for Amazon EC2 Auto discovery
-
-##### `AWS_REGION` (default `eu-west-1`)
-Specify the Amazon region to use for Amazon EC2 Auto discovery
 
 ##### `AWS_SECURITY_GROUP` (default `core`)
 Specify the Amazon EC2/VPC security group to use for Amazon EC2 Auto discovery
