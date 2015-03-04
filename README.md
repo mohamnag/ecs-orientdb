@@ -15,5 +15,36 @@ fleetctl start orient@{1..3}.service
 docker stop orient
 docker rm orient
 docker pull abcum/orientdb
-docker run --name orient -e PUBLIC_IP=`ip route | awk '/eth1/ { print  $9 }'` -e PRIVATE_IP=`ip route | awk '/default/ { print  $3 }'` -p 2424:2424 -p 2480:2480 -p 5701:5701 -d abcum/orientdb
+
+# Example using Vagrant with tcp discovery
+docker run --name orient -h $(hostname) -e IP=`ip route | awk '/eth1/ { print  $9 }'` -e MEMBERS=172.17.8.101-103 -p 2424:2424 -p 2480:2480 -p 5701:5701 -d abcum/orientdb
+
+# Example using Amazon with auto discovery
+docker run --name orient -h $(hostname) -e IP=`ip route | awk '/default/ { print  $9 }'` -e TCP=false -e AWS=true -e AWSKEY='AKIAIOSFODNN7EXAMPLE' -e AWSSEC=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY -e AWS -p 2424:2424 -p 2480:2480 -p 5701:5701 -d abcum/orientdb
 ```
+
+### Environment variables
+
+##### `IP` (needs to be set)
+Specify the ip address of the machine
+
+##### `TCP` (default `true`)
+Specify whether Hazelcast should use TCP-IP discovery
+
+##### `MEMBERS` (default `127.0.0.1`)
+Specify other member nodes for TCP-IP discovery
+
+##### `AWS` (default `false`)
+Specify whether Hazelcast should use Amazon EC2 Auto discovery
+
+##### `AWSKEY` (default `NOTSET`)
+Specify the Amazon access key to use for Amazon EC2 Auto discovery
+
+##### `AWSSEC` (default `NOTSET`)
+Specify the Amazon secret key to use for Amazon EC2 Auto discovery
+
+##### `AWSREGION` (default `eu-west-1`)
+Specify the Amazon region to use for Amazon EC2 Auto discovery
+
+##### `AWSGROUP` (default `core`)
+Specify the Amazon EC2/VPC security group to use for Amazon EC2 Auto discovery
