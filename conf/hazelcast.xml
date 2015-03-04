@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <hazelcast xsi:schemaLocation="http://www.hazelcast.com/schema/config hazelcast-config-3.0.xsd" xmlns="http://www.hazelcast.com/schema/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
-	<properties>
-		<property name="hazelcast.local.localAddress">${hazelcast.ip}</property>
+    <properties>
+        <property name="hazelcast.local.localAddress">${hazelcast.ip}</property>
     </properties>
 
-	<group>
-		<name>orientdb</name>
-		<password>orientdb</password>
-	</group>
+    <group>
+        <name>orientdb</name>
+        <password>orientdb</password>
+    </group>
 
-	<network>
-		<public-address>${hazelcast.ip}</public-address>
-		<port auto-increment="false">5701</port>
-		<outbound-ports>
+    <network>
+        <public-address>${hazelcast.ip}</public-address>
+        <port auto-increment="false">5701</port>
+        <outbound-ports>
             <ports>0</ports>
         </outbound-ports>
-		<join>
-			<multicast enabled="false">
-				<multicast-group>224.2.2.3</multicast-group>
+        <join>
+            <multicast enabled="false">
+                <multicast-group>224.2.2.3</multicast-group>
                 <multicast-port>54327</multicast-port>
-			</multicast>
-		    <tcp-ip enabled="${hazelcast.tcp}">
-				<member>${hazelcast.members}</member>
-			</tcp-ip>
-			<aws enabled="${hazelcast.aws}">
-		        <access-key>${hazelcast.access}</access-key>
-		        <secret-key>${hazelcast.secret}</secret-key>
-		        <region>${hazelcast.region}</region>
-		        <security-group-name>${hazelcast.group}</security-group-name>
-		    </aws>
-		</join>
-	</network>
+            </multicast>
+            <tcp-ip enabled="${hazelcast.tcp}">
+                <member>${hazelcast.members}</member>
+            </tcp-ip>
+            <aws enabled="${hazelcast.aws}">
+                <access-key>${hazelcast.access}</access-key>
+                <secret-key>${hazelcast.secret}</secret-key>
+                <region>${hazelcast.region}</region>
+                <security-group-name>${hazelcast.group}</security-group-name>
+            </aws>
+        </join>
+    </network>
 
-	<executor-service>
-		<pool-size>16</pool-size>
-	</executor-service>
+    <executor-service>
+        <pool-size>16</pool-size>
+    </executor-service>
 
 </hazelcast>
