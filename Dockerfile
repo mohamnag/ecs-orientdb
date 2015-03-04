@@ -22,6 +22,10 @@ ADD conf/* /opt/orient/config/
 
 EXPOSE 2424 2480 5701
 
+# Setup default environment
+
+ENV IP=127.0.0.1 TCP=true AWS=false AWSKEY=NOTSET AWSSEC=NOTSET AWSREGION=eu-west-1 AWSGROUP=core MEMBERS=127.0.0.1
+
 # Set the default command
 
 CMD /opt/orient/config/orient.sh
