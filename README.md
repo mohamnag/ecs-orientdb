@@ -20,7 +20,7 @@ docker pull abcum/orientdb
 docker run --name orient -h $(hostname) -e IP=`ip route | awk '/eth1/ { print  $9 }'` -e MEMBERS=172.17.8.101-103 -p 2424:2424 -p 2480:2480 -p 5701:5701 -d abcum/orientdb
 
 # Example using Amazon with auto discovery
-docker run --name orient -h $(hostname) -e IP=`ip route | awk '/default/ { print  $9 }'` -e TCP=false -e AWS=true -e AWSKEY='AKIAIOSFODNN7EXAMPLE' -e AWSSEC=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY -e AWS -p 2424:2424 -p 2480:2480 -p 5701:5701 -d abcum/orientdb
+docker run --name orient -h $(hostname) -e IP=`ip route | awk '/default/ { print  $9 }'` -e TCP=false -e AWS=true -e AWS_ACCESS_KEY='AKIAIOSFODNN7EXAMPLE' -e AWS_SECRET_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY -e AWS -p 2424:2424 -p 2480:2480 -p 5701:5701 -d abcum/orientdb
 ```
 
 ### Environment variables
@@ -37,14 +37,14 @@ Specify other member nodes for TCP-IP discovery
 ##### `AWS` (default `false`)
 Specify whether Hazelcast should use Amazon EC2 Auto discovery
 
-##### `AWSKEY` (default `NOTSET`)
+##### `AWS_ACCESS_KEY` (default `NOTSET`)
 Specify the Amazon access key to use for Amazon EC2 Auto discovery
 
-##### `AWSSEC` (default `NOTSET`)
+##### `AWS_SECRET_KEY` (default `NOTSET`)
 Specify the Amazon secret key to use for Amazon EC2 Auto discovery
 
-##### `AWSREGION` (default `eu-west-1`)
+##### `AWS_REGION` (default `eu-west-1`)
 Specify the Amazon region to use for Amazon EC2 Auto discovery
 
-##### `AWSGROUP` (default `core`)
+##### `AWS_SECURITY_GROUP` (default `core`)
 Specify the Amazon EC2/VPC security group to use for Amazon EC2 Auto discovery
