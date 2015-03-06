@@ -2,8 +2,7 @@
     "autoDeploy": true,
     "hotAlignment": true,
     "readQuorum": 1,
-    "writeQuorum": 1,
-    "executionMode": "asynchronous",
+    "writeQuorum": 2,
     "failureAvailableNodesLessQuorum": false,
     "readYourWrites": true,
     "clusters": {
