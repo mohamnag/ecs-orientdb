@@ -1,4 +1,4 @@
-FROM centos:latest
+FROM abcum/centos:latest
 
 MAINTAINER Tobie Morgan Hitchcock <tobie@abcum.com>
 
