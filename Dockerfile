@@ -1,12 +1,10 @@
-FROM abcum/centos:latest
+FROM abcum/alpine:latest
 
 MAINTAINER Tobie Morgan Hitchcock <tobie@abcum.com>
 
 # Packages
 
-RUN yum install -y epel-release
-
-RUN yum install -y tar java-1.7.0-openjdk-headless
+RUN apk-install tar curl openjdk7-jre-base
 
 # Install
 
