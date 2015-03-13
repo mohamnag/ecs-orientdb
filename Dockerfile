@@ -8,7 +8,7 @@ RUN apk-install tar curl openjdk7-jre-base
 
 # Install
 
-RUN curl -o orientdb.tar.gz https://abcum-deploy.s3.amazonaws.com/orient/orientdb-community-2.0.5-2015-03-11-1100.tar.gz && mkdir -p /opt/orient && tar -zxvf orientdb.tar.gz --strip-components=1 --directory /opt/orient && rm -rf orientdb.tar.gz
+RUN curl -o orientdb.tar.gz https://abcum-deploy.s3.amazonaws.com/orient/orientdb-community-2.0.5.tar.gz && mkdir -p /opt/orient && tar -zxvf orientdb.tar.gz --strip-components=1 --directory /opt/orient && rm -rf orientdb.tar.gz
 
 # Configs
 
