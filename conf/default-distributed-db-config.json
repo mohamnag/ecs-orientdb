@@ -1,6 +1,6 @@
 {
     "autoDeploy": true,
-    "hotAlignment": true,
+    "hotAlignment": false,
     "readQuorum": 1,
     "writeQuorum": 2,
     "failureAvailableNodesLessQuorum": false,
