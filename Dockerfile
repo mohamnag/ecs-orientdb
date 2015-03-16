@@ -1,4 +1,4 @@
-FROM abcum/alpine:latest
+FROM dockerfile/java:oracle-java8
 
 MAINTAINER Tobie Morgan Hitchcock <tobie@abcum.com>
 
