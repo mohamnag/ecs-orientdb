@@ -12,8 +12,6 @@ RUN rm -rf /opt/orient/config
 
 ADD conf/* /opt/orient/config/
 
-RUN keytool -genkey -alias foo -keystore /root/.keystore -dname cn=test -storepass changeit -keypass changeit
-
 # Expose the necessary ports
 
 EXPOSE 2424 2480 5701
