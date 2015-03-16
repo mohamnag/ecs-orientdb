@@ -31,8 +31,6 @@
             <aws enabled="${hazelcast.aws}">
                 <access-key>${hazelcast.access}</access-key>
                 <secret-key>${hazelcast.secret}</secret-key>
-                <region>${hazelcast.region}</region>
-                <security-group-name>${hazelcast.group}</security-group-name>
             </aws>
         </join>
     </network>
