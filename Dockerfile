@@ -2,10 +2,6 @@ FROM dockerfile/java:oracle-java8
 
 MAINTAINER Tobie Morgan Hitchcock <tobie@abcum.com>
 
-# Packages
-
-RUN apk-install tar curl openjdk7-jre-base
-
 # Install
 
 RUN curl -o orientdb.tar.gz https://abcum.s3.amazonaws.com/orientdb/orientdb-community-2.0.5.tar.gz && mkdir -p /opt/orient && tar -zxvf orientdb.tar.gz --strip-components=1 --directory /opt/orient && rm -rf orientdb.tar.gz
