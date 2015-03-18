@@ -6,6 +6,7 @@
         <property name="hazelcast.mancenter.enabled">false</property>
         <property name="hazelcast.memcache.enabled">false</property>
         <property name="hazelcast.rest.enabled">false</property>
+        <property name="hazelcast.health.monitoring.level">OFF</property>
         <property name="hazelcast.local.localAddress">${hazelcast.ip}</property>
     </properties>
 
