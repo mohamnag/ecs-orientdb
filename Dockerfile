@@ -4,7 +4,9 @@ MAINTAINER Tobie Morgan Hitchcock <tobie@abcum.com>
 
 # Configs
 
-ADD conf /opt/config
+ADD conf /opt/conf
+
+ADD init /opt/init
 
 # Expose the necessary ports
 
@@ -12,8 +14,8 @@ EXPOSE 2424 2480 5701
 
 # Setup default environment
 
-ENV IP=127.0.0.1 MEM=512M TCP=true AWS=false AWS_ACCESS_KEY=NOTSET AWS_SECRET_KEY=NOTSET AWS_REGION=eu-west-1 AWS_SECURITY_GROUP=core MEMBERS=127.0.0.1 VERSION=NOTSET
+ENV IP=127.0.0.1 MEM=512M TCP=true AWS=false AWS_ACCESS_KEY=NOTSET AWS_SECRET_KEY=NOTSET AWS_REGION=eu-west-1 AWS_SECURITY_GROUP=core MEMBERS=127.0.0.1 VERSION=2.0.13
 
 # Set the default command
 
-CMD /opt/orient/config/orient.sh
+CMD /opt/init/orient.sh
