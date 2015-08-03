@@ -4,7 +4,7 @@ MAINTAINER Tobie Morgan Hitchcock <tobie@abcum.com>
 
 # Configs
 
-ADD conf/* /opt/config/
+ADD conf /opt/config
 
 # Expose the necessary ports
 
