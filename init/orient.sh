@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Check variables
+if [ "$VERSION" = "NOTSET" ]; then echo "You must set an OrientDB Version"; exit; fi
+
 # Export variables
 export ORIENTDB_HOME='/opt/orient'
 export ORIENTDB_VERSION=${VERSION}
