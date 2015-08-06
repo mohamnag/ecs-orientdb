@@ -8,6 +8,10 @@
         <property name="hazelcast.rest.enabled">false</property>
         <property name="hazelcast.health.monitoring.level">OFF</property>
         <property name="hazelcast.local.localAddress">${hazelcast.ip}</property>
+        <property name="hazelcast.max.no.heartbeat.seconds">15</property>
+        <property name="hazelcast.max.no.master.confirmation.seconds">30</property>
+        <property name="hazelcast.master.confirmation.interval.seconds">15</property>
+        <property name="hazelcast.member.list.publish.interval.seconds">60</property>
     </properties>
 
     <group>
