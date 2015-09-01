@@ -3,16 +3,13 @@ FROM java:8
 MAINTAINER Mohammad Naghavi <mohamnag@gmail.com>
 
 # Setup default environment, these may be overwritten when running image
-ENV IP=127.0.0.1 
 ENV MEM=512M 
-ENV TCP=true 
 ENV MEMBERS=127.0.0.1 
 
-ENV AWS=false 
 ENV AWS_ACCESS_KEY=NOTSET 
 ENV AWS_SECRET_KEY=NOTSET 
-ENV AWS_REGION=eu-west-1 
 ENV AWS_SECURITY_GROUP=core 
+
 
 
 # Export internal variables
