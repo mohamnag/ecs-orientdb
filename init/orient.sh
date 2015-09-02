@@ -1,8 +1,12 @@
 #!/bin/sh
 EC2_IP=`curl -s http://169.254.169.254/latest/meta-data/local-ipv4`
+echo ${EC2_IP}
 
 EC2_AVAIL_ZONE=`curl -s http://169.254.169.254/latest/meta-data/placement/availability-zone`
+echo ${EC2_AVAIL_ZONE}
+
 EC2_REGION="`echo \"${EC2_AVAIL_ZONE}\" | sed -e 's:\([0-9][0-9]*\)[a-z]*\$:\\1:'`"
+echo ${EC2_REGION}
 
 #EC2_SEC_GROUP=`curl -s http://169.254.169.254/latest/meta-data/security-groups`
 
@@ -26,3 +30,4 @@ java \
 	-Dorientdb.config.file="${ORIENTDB_HOME}/config/orientdb.xml" \
 	-Dorientdb.www.path="${ORIENTDB_HOME}/www" \
 	-cp "${ORIENTDB_HOME}/lib/orientdb-server-${ORIENTDB_VERSION}.jar:${ORIENTDB_HOME}/lib/*" $* com.orientechnologies.orient.server.OServerMain
+	/
