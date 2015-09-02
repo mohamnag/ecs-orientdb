@@ -3,7 +3,7 @@
 OrientDB containerized in a distributed setup ready for AWS's ECS service.
 
 
-Following environment variables should be set during the task definition:
+- Following environment variables should be set during the task definition:
 ```
 AWS_ACCESS_KEY=NOTSET
 AWS_SECRET_KEY=NOTSET
@@ -11,6 +11,7 @@ EC2_SEC_GROUP=hg_hazelcast
 EC2_TAG_KEY=cluster
 EC2_TAG_VAL=odb_node
 ```
+
 
 - Before starting read (skim) this: https://hazelcast.com/resources/amazon-ec2-deployment-guide/
 

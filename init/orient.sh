@@ -1,12 +1,14 @@
 #!/bin/sh
 EC2_IP=`curl -s http://169.254.169.254/latest/meta-data/local-ipv4`
-echo ${EC2_IP}
+echo Discovered IP: ${EC2_IP}
 
 EC2_AVAIL_ZONE=`curl -s http://169.254.169.254/latest/meta-data/placement/availability-zone`
-echo ${EC2_AVAIL_ZONE}
+echo Discovered Availability Zone: ${EC2_AVAIL_ZONE}
 
 EC2_REGION="`echo \"${EC2_AVAIL_ZONE}\" | sed -e 's:\([0-9][0-9]*\)[a-z]*\$:\\1:'`"
-echo ${EC2_REGION}
+echo Discovered Region: ${EC2_REGION}
+
+ORIENTDB_NODE_NAME=$(hostname)
 
 #EC2_SEC_GROUP=`curl -s http://169.254.169.254/latest/meta-data/security-groups`
 

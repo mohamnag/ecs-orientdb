@@ -14,7 +14,6 @@ ENV EC2_TAG_VAL=NOTSET
 # Export internal variables
 ENV ORIENTDB_HOME='/opt/orient'
 ENV ORIENTDB_VERSION='2.0.15'
-ENV ORIENTDB_NODE_NAME=$(hostname)
 
 # Expose the necessary ports
 EXPOSE 2424 2480 5701
