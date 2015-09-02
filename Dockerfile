@@ -21,13 +21,13 @@ EXPOSE 2424 2480 5701
 # Install
 RUN \
 	curl -o orientdb.tar.gz http://orientdb.com/download.php?file=orientdb-community-${ORIENTDB_VERSION}.tar.gz && \
-	mkdir -p /opt/orient && \
-	tar -zxvf orientdb.tar.gz --strip-components=1 --directory /opt/orient && \
+	mkdir -p ${ORIENTDB_HOME} && \
+	tar -zxvf orientdb.tar.gz --strip-components=1 --directory ${ORIENTDB_HOME} && \
 	rm -rf orientdb.tar.gz && \
-	rm -rf /opt/orient/config
+	rm -rf ${ORIENTDB_HOME}/config
 
 # Add Configurations
-ADD conf /opt/orient/config
+ADD conf ${ORIENTDB_HOME}/config
 
 # Set the default command
 ADD init /opt/init
