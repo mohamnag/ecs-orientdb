@@ -31,7 +31,6 @@
                 <multicast-port>54327</multicast-port>
             </multicast>
             <tcp-ip enabled="false">
-                <member/>
             </tcp-ip>
             <aws enabled="${hazelcast.aws}">
                 <access-key>${hazelcast.access}</access-key>
