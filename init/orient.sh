@@ -14,7 +14,7 @@ echo Setting Node Name: ${ORIENTDB_NODE_NAME}
 # we handle replacing root pass here, because otherwise a guest user will also be created
 sed -i "s|ORIENTDB_ROOT_PASSWORD|${ORIENTDB_ROOT_PASSWORD}|" ${ORIENTDB_HOME}/config/orientdb-server-config.xml
 
-exec ${ORIENTDB_HOME}/bin/server.sh \
+${ORIENTDB_HOME}/bin/server.sh \
     -Xmx${MEM_LIMIT} \
     -Dhazelcast.ip=${EC2_IP} \
 	-Dhazelcast.access=${AWS_ACCESS_KEY} \

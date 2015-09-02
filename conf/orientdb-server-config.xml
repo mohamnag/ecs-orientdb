@@ -20,8 +20,8 @@
         <handler class="com.orientechnologies.orient.server.hazelcast.OHazelcastPlugin">
             <parameters>
                 <parameter name="enabled" value="true"/>
-                <parameter name="configuration.db.default" value="/opt/orient/config/default-distributed-db-config.json"/>
-                <parameter name="configuration.hazelcast" value="/opt/orient/config/hazelcast.xml"/>
+                <parameter name="configuration.db.default" value="${ORIENTDB_HOME}/config/default-distributed-db-config.json"/>
+                <parameter name="configuration.hazelcast" value="${ORIENTDB_HOME}/config/hazelcast.xml"/>
                 <parameter name="conflict.resolver.impl" value="com.orientechnologies.orient.server.distributed.conflict.ODefaultReplicationConflictResolver"/>
                 <parameter name="sharding.strategy.round-robin" value="com.orientechnologies.orient.server.hazelcast.sharding.strategy.ORoundRobinPartitioninStrategy"/>
             </parameters>
