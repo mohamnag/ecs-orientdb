@@ -12,6 +12,7 @@
         <property name="hazelcast.max.no.master.confirmation.seconds">30</property>
         <property name="hazelcast.master.confirmation.interval.seconds">15</property>
         <property name="hazelcast.member.list.publish.interval.seconds">60</property>
+        <property name="hazelcast.icmp.enabled">true</property>
     </properties>
 
     <group>

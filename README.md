@@ -4,18 +4,18 @@ OrientDB containerized in a distributed setup ready for AWS's ECS service.
 
 > **WARNING** this setup does not encrypt messages sent between DB instances, and is meant to be used INSIDE a secured network.
 
+- Before starting read (skim) this: https://hazelcast.com/resources/amazon-ec2-deployment-guide/
+
 - Following environment variables should be set during the task definition:
 
 ```
-AWS_ACCESS_KEY=...
-AWS_SECRET_KEY=...
-EC2_SEC_GROUP=sg_db_servers
-EC2_TAG_KEY=cluster
-EC2_TAG_VAL=odb_node
-ORIENTDB_ROOT_PASSWORD=somestrongpassword
+ AWS_ACCESS_KEY=...
+ AWS_SECRET_KEY=...
+ EC2_SEC_GROUP=sg_db_servers
+ EC2_TAG_KEY=cluster
+ EC2_TAG_VAL=odb_node
+ ORIENTDB_ROOT_PASSWORD=somestrongpassword
 ```
-
-- Before starting read (skim) this: https://hazelcast.com/resources/amazon-ec2-deployment-guide/
 
 - Because in a correct setup each DB container shall run on one separate EC2 machine (container instance) due to static port mappings necessary, you will need exactly the same amount of machines as you will have DB containers.
 
@@ -28,19 +28,21 @@ ORIENTDB_ROOT_PASSWORD=somestrongpassword
 - AWS key and secret provided shall be best belonging to a new user with only one permission given `ec2:DescribeInstances`. The whole permission shall look like:
 
 ```json
-{
-  "Version": "xxxxxxx",
-  "Statement": [
-    {
-      "Sid": "xxxxxx",
-      "Effect": "Allow",
-      "Action": [
-        "ec2:DescribeInstances"
-      ],
-      "Resource": [
-        "*"
-      ]
-    }
-  ]
-}
+ {
+   "Version": "xxxxxxx",
+   "Statement": [
+     {
+       "Sid": "xxxxxx",
+       "Effect": "Allow",
+       "Action": [
+         "ec2:DescribeInstances"
+       ],
+       "Resource": [
+         "*"
+       ]
+     }
+   ]
+ }
 ```
+
+- Enable ICMP Echo Request on the security group attached to EC2 machines at least for the same security group as source
