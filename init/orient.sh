@@ -9,30 +9,19 @@ EC2_REGION="`echo \"${EC2_AVAIL_ZONE}\" | sed -e 's:\([0-9][0-9]*\)[a-z]*\$:\\1:
 echo Discovered Region: ${EC2_REGION}
 
 ORIENTDB_NODE_NAME=$(hostname)
+echo Setting Node Name: ${ORIENTDB_NODE_NAME}
 
 # we handle replacing root pass here, because otherwise a guest user will also be created
-sed -i "s|ORIENTDB_ROOT_PASSWORD|${ORIENTDB_ROOT_PASSWORD}|" ${ORIENTDB_HOME}/config/orientdb.xml
+sed -i "s|ORIENTDB_ROOT_PASSWORD|${ORIENTDB_ROOT_PASSWORD}|" ${ORIENTDB_HOME}/config/orientdb-server-config.xml
 
-#EC2_SEC_GROUP=`curl -s http://169.254.169.254/latest/meta-data/security-groups`
-
-java \
-	-Xmx${MEM} \
-	-Dhazelcast.ip=${EC2_IP} \
-	-Dhazelcast.aws=true \
+exec ${ORIENTDB_HOME}/bin/server.sh \
+    -Xmx${MEM_LIMIT} \
+    -Dhazelcast.ip=${EC2_IP} \
 	-Dhazelcast.access=${AWS_ACCESS_KEY} \
 	-Dhazelcast.secret=${AWS_SECRET_KEY} \
 	-Dhazelcast.region=${EC2_REGION} \
 	-Dhazelcast.group=${EC2_SEC_GROUP} \
 	-Dhazelcast.tag_key=${EC2_TAG_KEY} \
 	-Dhazelcast.tag_value=${EC2_TAG_VAL} \
-	-Djna.nosys=true \
-	-XX:+HeapDumpOnOutOfMemoryError \
-	-Djava.awt.headless=true \
-	-Dfile.encoding=UTF8 \
-	-Drhino.opt.level=9 \
-	-Ddistributed=true \
-	-Djava.util.logging.config.file="${ORIENTDB_HOME}/config/orientdb.properties" \
-	-Dorientdb.config.file="${ORIENTDB_HOME}/config/orientdb.xml" \
-	-Dorientdb.www.path="${ORIENTDB_HOME}/www" \
-	-cp "${ORIENTDB_HOME}/lib/orientdb-server-${ORIENTDB_VERSION}.jar:${ORIENTDB_HOME}/lib/*" $* com.orientechnologies.orient.server.OServerMain
-	/
+    -Ddistributed=true  $* \
+    /

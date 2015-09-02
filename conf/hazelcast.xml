@@ -33,7 +33,7 @@
             </multicast>
             <tcp-ip enabled="false">
             </tcp-ip>
-            <aws enabled="${hazelcast.aws}">
+            <aws enabled="true">
                 <access-key>${hazelcast.access}</access-key>
                 <secret-key>${hazelcast.secret}</secret-key>
                 <region>${hazelcast.region}</region>

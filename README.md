@@ -15,6 +15,7 @@ OrientDB containerized in a distributed setup ready for AWS's ECS service.
  EC2_TAG_KEY=cluster
  EC2_TAG_VAL=odb_node
  ORIENTDB_ROOT_PASSWORD=somestrongpassword
+ MEM_LIMIT=512M
 ```
 
 - Because in a correct setup each DB container shall run on one separate EC2 machine (container instance) due to static port mappings necessary, you will need exactly the same amount of machines as you will have DB containers.
