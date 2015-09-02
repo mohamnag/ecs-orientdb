@@ -2,16 +2,17 @@ FROM java:8
 
 MAINTAINER Mohammad Naghavi <mohamnag@gmail.com>
 
-# Setup default environment, these may be overwritten when running image
-ENV MEM=512M
+# Setup default environment, these have to be overwritten when running image
 ENV AWS_ACCESS_KEY=NOTSET
 ENV AWS_SECRET_KEY=NOTSET
-ENV EC2_SEC_GROUP=hg_hazelcast
+ENV EC2_SEC_GROUP=NOTSET
 ENV EC2_TAG_KEY=NOTSET
 ENV EC2_TAG_VAL=NOTSET
+ENV ORIENTDB_ROOT_PASSWORD=0r13ntDB
 
 
 # Export internal variables
+ENV MEM=512M
 ENV ORIENTDB_HOME='/opt/orient'
 ENV ORIENTDB_VERSION='2.0.15'
 
