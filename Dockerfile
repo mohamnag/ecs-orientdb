@@ -3,13 +3,12 @@ FROM java:8
 MAINTAINER Mohammad Naghavi <mohamnag@gmail.com>
 
 # Setup default environment, these may be overwritten when running image
-ENV MEM=512M 
-ENV MEMBERS=127.0.0.1 
-
-ENV AWS_ACCESS_KEY=NOTSET 
-ENV AWS_SECRET_KEY=NOTSET 
-ENV AWS_SECURITY_GROUP=core 
-
+ENV MEM=512M
+ENV AWS_ACCESS_KEY=NOTSET
+ENV AWS_SECRET_KEY=NOTSET
+ENV EC2_SEC_GROUP=hg_hazelcast
+ENV EC2_TAG_KEY=NOTSET
+ENV EC2_TAG_VAL=NOTSET
 
 
 # Export internal variables

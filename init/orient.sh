@@ -2,10 +2,9 @@
 EC2_IP=`curl -s http://169.254.169.254/latest/meta-data/local-ipv4`
 
 EC2_AVAIL_ZONE=`curl -s http://169.254.169.254/latest/meta-data/placement/availability-zone`
-
 EC2_REGION="`echo \"${EC2_AVAIL_ZONE}\" | sed -e 's:\([0-9][0-9]*\)[a-z]*\$:\\1:'`"
 
-EC2_SEC_GROUP=`curl -s http://169.254.169.254/latest/meta-data/security-groups`
+#EC2_SEC_GROUP=`curl -s http://169.254.169.254/latest/meta-data/security-groups`
 
 java \
 	-Xmx${MEM} \
@@ -15,8 +14,8 @@ java \
 	-Dhazelcast.secret=${AWS_SECRET_KEY} \
 	-Dhazelcast.region=${EC2_REGION} \
 	-Dhazelcast.group=${EC2_SEC_GROUP} \
-	-Dhazelcast.tcp=true \
-	-Dhazelcast.members=${MEMBERS} \
+	-Dhazelcast.tag_key=${EC2_TAG_KEY} \
+	-Dhazelcast.tag_value=${EC2_TAG_VAL} \
 	-Djna.nosys=true \
 	-XX:+HeapDumpOnOutOfMemoryError \
 	-Djava.awt.headless=true \

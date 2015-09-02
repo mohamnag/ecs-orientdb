@@ -30,14 +30,16 @@
                 <multicast-group>224.2.2.3</multicast-group>
                 <multicast-port>54327</multicast-port>
             </multicast>
-            <tcp-ip enabled="${hazelcast.tcp}">
-                <member>${hazelcast.members}</member>
+            <tcp-ip enabled="false">
+                <member/>
             </tcp-ip>
             <aws enabled="${hazelcast.aws}">
                 <access-key>${hazelcast.access}</access-key>
                 <secret-key>${hazelcast.secret}</secret-key>
                 <region>${hazelcast.region}</region>
                 <security-group-name>${hazelcast.group}</security-group-name>
+                <tag-key>${hazelcast.tag_key}</tag-key>
+                <tag-value>${hazelcast.tag_value}</tag-value>
             </aws>
         </join>
     </network>
