@@ -2,6 +2,7 @@
 
 OrientDB containerized in a distributed setup ready for AWS's ECS service.
 
+> **WARNING** this setup does not encrypt messages sent between DB instances, and is meant to be used INSIDE a secured network.
 
 - Following environment variables should be set during the task definition:
 
@@ -16,18 +17,30 @@ ORIENTDB_ROOT_PASSWORD=somestrongpassword
 
 - Before starting read (skim) this: https://hazelcast.com/resources/amazon-ec2-deployment-guide/
 
-- Because in a correct setup each DB container shall run on one separate EC2 machine (container instance) due to
- static port mappings necessary, you will need exactly the same amount of machines as you will have DB containers.
+- Because in a correct setup each DB container shall run on one separate EC2 machine (container instance) due to static port mappings necessary, you will need exactly the same amount of machines as you will have DB containers.
 
-- You have to at least map port `5701` for clustering to work. You will also need one of the ports `2424` (binary) or
- `2480` (REST API) or maybe both exposed for accessing DB.
+- You have to at least map port `5701` for clustering to work. You will also need one of the ports `2424` (binary) or `2480` (REST API) or maybe both exposed for accessing DB.
 
-- Port `5701` should also be opened on EC2 machine's (container instance) security group for IPs intended for DB
- cluster subnet(s). DB instances communicate with each other over that port.
+- Port `5701` should also be opened on EC2 machine's (container instance) security group for IPs intended for DB cluster subnet(s). DB instances communicate with each other over that port.
 
-- As multicast is not possible on EC2, and you probably dont want to restart all your containers on each IP change,
- the Hazelcast's AWS specific discovery is used. For better results it can be either done by tags attached to
- EC2 machine (container instance) or by shared security group.
+- As multicast is not possible on EC2, and you probably dont want to restart all your containers on each IP change, the Hazelcast's AWS specific discovery is used. For better results it can be either done by tags attached to EC2 machine (container instance) or by shared security group.
 
-- **WARNING** this setup does not encrypt messages sent between DB instances, and is meant to be used INSIDE a secured
- network.
+- AWS key and secret provided shall be best belonging to a new user with only one permission given `ec2:DescribeInstances`. The whole permission shall look like:
+
+```json
+{
+  "Version": "xxxxxxx",
+  "Statement": [
+    {
+      "Sid": "xxxxxx",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:DescribeInstances"
+      ],
+      "Resource": [
+        "*"
+      ]
+    }
+  ]
+}
+```
