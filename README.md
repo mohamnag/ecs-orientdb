@@ -8,7 +8,7 @@ OrientDB containerized in a distributed setup ready for AWS's ECS service.
 
 - Following environment variables should be set during the task definition:
 
-```
+```bash
  AWS_ACCESS_KEY=...
  AWS_SECRET_KEY=...
  EC2_SEC_GROUP=sg_db_servers
