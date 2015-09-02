@@ -68,9 +68,9 @@
         </cluster>
     </network>
 
-    <!--<users>-->
-        <!--<user name="root" password="root" resources="*" />-->
-    <!--</users>-->
+    <users>
+        <user name="root" password="ORIENTDB_ROOT_PASSWORD" resources="*" />
+    </users>
 
     <properties>
         <entry name="db.pool.min" value="1" />

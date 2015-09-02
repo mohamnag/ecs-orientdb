@@ -10,6 +10,9 @@ echo Discovered Region: ${EC2_REGION}
 
 ORIENTDB_NODE_NAME=$(hostname)
 
+# we handle replacing root pass here, because otherwise a guest user will also be created
+sed "s|ORIENTDB_ROOT_PASSWORD|${ORIENTDB_ROOT_PASSWORD}|" ${ORIENTDB_HOME}/config/orientdb.xml
+
 #EC2_SEC_GROUP=`curl -s http://169.254.169.254/latest/meta-data/security-groups`
 
 java \
