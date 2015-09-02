@@ -27,6 +27,10 @@ RUN \
 	rm -rf orientdb.tar.gz && \
 	rm -rf ${ORIENTDB_HOME}/config
 
+# Add Hazelcast Cloud, this is a bug in OrientDB and is fixed in 2.1
+RUN rm ${ORIENTDB_HOME}/lib/hazelcast*
+ADD http://search.maven.org/remotecontent?filepath=com/hazelcast/hazelcast-all/3.3.5/hazelcast-all-3.3.5.jar ${ORIENTDB_HOME}/lib/
+
 # Add Configurations
 ADD conf ${ORIENTDB_HOME}/config
 
