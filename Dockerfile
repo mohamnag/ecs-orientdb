@@ -16,9 +16,6 @@ ENV MEM_LIMIT=512M
 ENV ORIENTDB_HOME='/opt/orientdb'
 ENV ORIENTDB_VERSION='2.0.15'
 
-# Expose the necessary ports
-EXPOSE 2424 2480 5701
-
 # Install
 RUN \
 	curl -o orientdb.tar.gz http://orientdb.com/download.php?file=orientdb-community-${ORIENTDB_VERSION}.tar.gz && \
@@ -33,7 +30,12 @@ ADD http://central.maven.org/maven2/com/hazelcast/hazelcast-all/3.4.5/hazelcast-
 
 # Add Configurations
 ADD conf ${ORIENTDB_HOME}/config
+# Add init script
+ADD init /opt/init
+# Expose the necessary ports
+EXPOSE 2424 2480 5701
+# Escape union file system for DB files
+VOLUME /opt/orientdb/databases/
 
 # Set the default command
-ADD init /opt/init
 CMD /opt/init/orient.sh
