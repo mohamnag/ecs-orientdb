@@ -59,7 +59,7 @@ This same (=saving space on your docker host) image can also be used for making 
 
 A sample usage:
 ```bash
-$ docker run -e ORIENTDB_ROOT_PASSWORD=somepass -e BACKUP_HOST="remote:localhost/testdb" mohamnag/ecs-orientdb backup.sh
+$ docker run -e ORIENTDB_ROOT_PASSWORD=somepass -e BACKUP_HOST="remote:localhost/testdb" mohamnag/ecs-orientdb /opt/backup.sh
 ```
 
 The backup will be stored under the container volume `/backups/`. Backup file's name contains DB host, DB name and date and time stamp. You can mount the backup volume on another container for further processing (like uploading to S3) using `--volumes-from` switch.

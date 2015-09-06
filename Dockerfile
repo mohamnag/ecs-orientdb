@@ -34,8 +34,10 @@ ADD http://central.maven.org/maven2/com/hazelcast/hazelcast-all/3.4.5/hazelcast-
 
 # Add Configurations
 ADD conf ${ORIENTDB_HOME}/config
-# Add init script
+# Add scripts
 ADD scripts /opt/
+RUN chmod +x /opt/service.sh
+RUN chmod +x /opt/backup.sh
 
 # Expose the necessary ports
 EXPOSE 2424 2480 5701
@@ -45,5 +47,4 @@ VOLUME ${ORIENTDB_HOME}/databases/
 VOLUME ${BACKUP_DIR}
 
 # Set the default command
-WORKDIR /opt
-CMD service.sh
+CMD /opt/service.sh
