@@ -11,10 +11,14 @@ ENV EC2_TAG_VAL=NOTSET
 ENV ORIENTDB_ROOT_PASSWORD=NOTSET
 ENV MEM_LIMIT=512M
 
+# Default env params for backup, should be overwritten on running
+ENV BACKUP_HOST=NOTSET
+
 
 # Export internal variables
 ENV ORIENTDB_HOME='/opt/orientdb'
 ENV ORIENTDB_VERSION='2.0.15'
+ENV BACKUP_DIR='/backups/'
 
 # Install
 RUN \
@@ -31,11 +35,15 @@ ADD http://central.maven.org/maven2/com/hazelcast/hazelcast-all/3.4.5/hazelcast-
 # Add Configurations
 ADD conf ${ORIENTDB_HOME}/config
 # Add init script
-ADD init /opt/init
+ADD scripts /opt/
+
 # Expose the necessary ports
 EXPOSE 2424 2480 5701
-# Escape union file system for DB files
-VOLUME /opt/orientdb/databases/
+
+# Escape union file system for DB & backup files
+VOLUME ${ORIENTDB_HOME}/databases/
+VOLUME ${BACKUP_DIR}
 
 # Set the default command
-CMD /opt/init/orient.sh
+WORKDIR /opt
+CMD service.sh

@@ -2,6 +2,8 @@
 
 OrientDB containerized in a distributed setup ready for AWS's ECS service.
 
+## DB Service
+
 > **WARNING** this setup does not encrypt messages sent between DB instances, and is meant to be used INSIDE a secured network.
 
 - Before starting read (skim) this: https://hazelcast.com/resources/amazon-ec2-deployment-guide/
@@ -47,3 +49,17 @@ OrientDB containerized in a distributed setup ready for AWS's ECS service.
    ]
  }
 ```
+
+## Backup
+This same (=saving space on your docker host) image can also be used for making backups of a running DB. In this case the command should be overridden and following params should be provided as environment parameters:
+```bash
+ ORIENTDB_ROOT_PASSWORD=somestrongpassword
+ BACKUP_HOST=...
+```
+
+A sample usage:
+```bash
+$ docker run -e ORIENTDB_ROOT_PASSWORD=somepass -e BACKUP_HOST="remote:localhost/testdb" mohamnag/ecs-orientdb backup.sh
+```
+
+The backup will be stored under the container volume `/backups/`. Backup file's name contains DB host, DB name and date and time stamp. You can mount the backup volume on another container for further processing (like uploading to S3) using `--volumes-from` switch.
