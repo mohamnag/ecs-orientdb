@@ -63,3 +63,6 @@ $ docker run -e ORIENTDB_ROOT_PASSWORD=somepass -e BACKUP_HOST="remote:localhost
 ```
 
 The backup will be stored under the container volume `/backups/`. Backup file's name contains DB host, DB name and date and time stamp. You can mount the backup volume on another container for further processing (like uploading to S3) using `--volumes-from` switch.
+
+# TODO
+ 1. define an entry point and replace direct script runs with parameters

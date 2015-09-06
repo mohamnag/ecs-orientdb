@@ -26,7 +26,8 @@ RUN \
 	mkdir -p ${ORIENTDB_HOME} && \
 	tar -zxvf orientdb.tar.gz --strip-components=1 --directory ${ORIENTDB_HOME} && \
 	rm -rf orientdb.tar.gz && \
-	rm -rf ${ORIENTDB_HOME}/config
+	rm -rf ${ORIENTDB_HOME}/config \
+	rm -rf ${ORIENTDB_HOME}/databases
 
 # Add Hazelcast Cloud, this is a bug in OrientDB and is fixed in 2.1
 RUN rm ${ORIENTDB_HOME}/lib/hazelcast*
