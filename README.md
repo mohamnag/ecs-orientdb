@@ -51,7 +51,7 @@ OrientDB containerized in a distributed setup ready for AWS's ECS service.
 ```
 
 ## Backup
-> Because remote backup is only supported on enterprise edition of OrientDB, you should run the container which is going to do the backup on the same instance that is running the main DB in another container and mount the volumes from that container into the one who is going to perform the backup.
+> Because real backups are only possible on enterprise version of OrientDB, the backup script here uses export functionality.
 
 This same (=saving space on your docker host) image can also be used for making backups of a running DB. In this case the command should be overridden and following params should be provided as environment parameters:
 ```bash
@@ -59,11 +59,14 @@ This same (=saving space on your docker host) image can also be used for making 
  BACKUP_USER=...
  BACKUP_PASS=...
 ```
-The backup will be stored under the container volume `/backups/`. Backup file's name contains DB host, DB name and date and time stamp. You can mount the backup volume on another container for further processing (like uploading to S3) using `--volumes-from` switch. DB name should only contain the DB name not the full URL. The user with provided credentials should have access to DB.
+
+The backup will be stored under the container volume `/backups/`. Backup file's name contains DB host, DB name and date and time stamp. You can mount the backup volume on another container for further processing (like uploading to S3) using `--volumes-from` switch. DB should be the full URL to DB. The user with provided credentials should have access to DB.
+
+If your DB consists of a single node, the DB will be read only as long as the backup process is running.
 
 A sample usage:
 ```bash
-$ docker run -e BACKUP_DB=testdb -e BACKUP_USER=admin -e BACKUP_PASS=admin --volumes-from name-or-id-of-container-running-db mohamnag/ecs-orientdb /opt/backup.sh
+$ docker run -e BACKUP_DB="remote:172.0.0.1/testdb" -e BACKUP_USER=admin -e BACKUP_PASS=admin mohamnag/ecs-orientdb /opt/backup.sh
 ```
 
 # TODO

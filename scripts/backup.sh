@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
 
 DATE=`date +%Y-%m-%d:%H:%M:%S`
-BACKUP_NAME=`echo ${DBNAME}-${DATE} | sed "s/[:/]/-/g"`
+DBNAME=`echo ${BACKUP_DB} | sed "s/.*://g"`
+BACKUP_NAME=`echo ${DBNAME}-${DATE}.export | sed "s/[:/]/-/g"`
 
-${ORIENTDB_HOME}/bin/backup.sh \
-    plocal:${ORIENTDB_HOME}/databases/${BACKUP_DB} \
-    ${BACKUP_USER} \
-    ${BACKUP_PASS} \
-    ${BACKUP_DIR}/${BACKUP_NAME}.zip
+${ORIENTDB_HOME}/bin/console.sh "connect ${BACKUP_DB} ${BACKUP_USER} ${BACKUP_PASS};freeze database;export database ${BACKUP_DIR}/${BACKUP_NAME};release database;"
