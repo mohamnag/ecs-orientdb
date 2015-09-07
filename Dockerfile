@@ -12,13 +12,15 @@ ENV ORIENTDB_ROOT_PASSWORD=NOTSET
 ENV MEM_LIMIT=512M
 
 # Default env params for backup, should be overwritten on running
-ENV BACKUP_HOST=NOTSET
+ENV BACKUP_DB=NOTSET
+ENV BACKUP_USER=NOTSET
+ENV BACKUP_PASS=NOTSET
 
 
 # Export internal variables
 ENV ORIENTDB_HOME='/opt/orientdb'
 ENV ORIENTDB_VERSION='2.0.15'
-ENV BACKUP_DIR='/backups/'
+ENV BACKUP_DIR='/backups'
 
 # Install
 RUN \

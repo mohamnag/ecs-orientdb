@@ -51,18 +51,20 @@ OrientDB containerized in a distributed setup ready for AWS's ECS service.
 ```
 
 ## Backup
+> Because remote backup is only supported on enterprise edition of OrientDB, you should run the container which is going to do the backup on the same instance that is running the main DB in another container and mount the volumes from that container into the one who is going to perform the backup.
+
 This same (=saving space on your docker host) image can also be used for making backups of a running DB. In this case the command should be overridden and following params should be provided as environment parameters:
 ```bash
- ORIENTDB_ROOT_PASSWORD=somestrongpassword
- BACKUP_HOST=...
+ BACKUP_DB=...
+ BACKUP_USER=...
+ BACKUP_PASS=...
 ```
+The backup will be stored under the container volume `/backups/`. Backup file's name contains DB host, DB name and date and time stamp. You can mount the backup volume on another container for further processing (like uploading to S3) using `--volumes-from` switch. DB name should only contain the DB name not the full URL. The user with provided credentials should have access to DB.
 
 A sample usage:
 ```bash
-$ docker run -e ORIENTDB_ROOT_PASSWORD=somepass -e BACKUP_HOST="remote:localhost/testdb" mohamnag/ecs-orientdb /opt/backup.sh
+$ docker run -e BACKUP_DB=testdb -e BACKUP_USER=admin -e BACKUP_PASS=admin --volumes-from name-or-id-of-container-running-db mohamnag/ecs-orientdb /opt/backup.sh
 ```
-
-The backup will be stored under the container volume `/backups/`. Backup file's name contains DB host, DB name and date and time stamp. You can mount the backup volume on another container for further processing (like uploading to S3) using `--volumes-from` switch.
 
 # TODO
  1. define an entry point and replace direct script runs with parameters
