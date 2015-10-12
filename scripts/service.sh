@@ -24,4 +24,6 @@ ${ORIENTDB_HOME}/bin/server.sh \
     -Dhazelcast.group=${EC2_SEC_GROUP} \
     -Dhazelcast.tag_key=${EC2_TAG_KEY} \
     -Dhazelcast.tag_value=${EC2_TAG_VAL} \
+    -Dnetwork.lockTimeout=${ODB_NETWORK_LOCKTIMEOUT} \
+    -Dnetwork.socketTimeout=${ODB_NETWORK_SOCKETTIMEOUT} \
     -Ddistributed=true  $*
