@@ -17,8 +17,11 @@ OrientDB containerized in a distributed setup ready for AWS's ECS service.
  EC2_TAG_KEY=cluster
  EC2_TAG_VAL=odb_node
  ORIENTDB_ROOT_PASSWORD=somestrongpassword
- MEM_LIMIT=512M
+ HEAP_MEM_LIMIT=512M
+ DISK_CACHE_BUFFER=1536
 ```
+
+- Based on available memory on the host, you have to tune `HEAP_MEM_LIMIT` and `DISK_CACHE_BUFFER` accordingly. OrientDB [recommends](http://orientdb.com/docs/2.1/Performance-Tuning.html) more disk cache than heap.
 
 - Because in a correct setup each DB container shall run on one separate EC2 machine (container instance) due to static port mappings necessary, you will need exactly the same amount of machines as you will have DB containers.
 

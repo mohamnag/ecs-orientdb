@@ -15,7 +15,8 @@ echo Setting Node Name: ${ORIENTDB_NODE_NAME}
 sed -i "s|ORIENTDB_ROOT_PASSWORD|${ORIENTDB_ROOT_PASSWORD}|" ${ORIENTDB_HOME}/config/orientdb-server-config.xml
 
 ${ORIENTDB_HOME}/bin/server.sh \
-    -Xmx${MEM_LIMIT} \
+    -Xmx${HEAP_MEM_LIMIT} \
+    -Dstorage.diskCache.bufferSize=${DISK_CACHE_BUFFER} \
     -Dhazelcast.ip=${EC2_IP} \
     -Dhazelcast.access=${AWS_ACCESS_KEY} \
     -Dhazelcast.secret=${AWS_SECRET_KEY} \
