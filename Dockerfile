@@ -20,7 +20,7 @@ ENV BACKUP_PASS=NOTSET
 
 # Export internal variables
 ENV ORIENTDB_HOME='/opt/orientdb'
-ENV ORIENTDB_VERSION='2.0.15'
+ENV ORIENTDB_VERSION='2.1.5'
 ENV BACKUP_DIR='/backups'
 ENV ODB_NETWORK_LOCKTIMEOUT=30000
 ENV ODB_NETWORK_SOCKETTIMEOUT=30000
@@ -34,12 +34,9 @@ RUN \
 	rm -rf ${ORIENTDB_HOME}/config \
 	rm -rf ${ORIENTDB_HOME}/databases
 
-# Add Hazelcast Cloud, this is a bug in OrientDB and is fixed in 2.1
-RUN rm ${ORIENTDB_HOME}/lib/hazelcast*
-ADD http://central.maven.org/maven2/com/hazelcast/hazelcast-all/3.4.5/hazelcast-all-3.4.5.jar ${ORIENTDB_HOME}/lib/
-
 # Add Configurations
 ADD conf ${ORIENTDB_HOME}/config
+
 # Add scripts
 ADD scripts /opt/
 RUN chmod +x /opt/service.sh
