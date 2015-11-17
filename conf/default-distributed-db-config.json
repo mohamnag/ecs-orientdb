@@ -3,7 +3,7 @@
     "hotAlignment": false,
     "executionMode": "undefined",
     "readQuorum": 1,
-    "writeQuorum": 2,
+    "writeQuorum": 1,
     "failureAvailableNodesLessQuorum": false,
     "readYourWrites": true,
     "clusters": {
