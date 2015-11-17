@@ -78,8 +78,8 @@
         <entry name="cache.level1.enabled" value="true" />
         <entry name="cache.level2.enabled" value="false" />
         <entry name="profiler.enabled" value="false" />
-        <entry name="log.console.level" value="error" />
-        <entry name="log.file.level" value="error" />
+        <entry name="log.file.level" value="WARNING" />
+        <entry name="log.console.level" value="WARNING" />
         <entry name="server.log.dumpClientExceptionLevel" value="OFF" />
     </properties>
     
