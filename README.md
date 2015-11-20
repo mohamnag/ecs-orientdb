@@ -1,9 +1,16 @@
 # OrientDB dockerized for ECS
-
 OrientDB containerized in a distributed setup ready for AWS's ECS service.
 
-## DB Service
+If you are looking for a single instance setup take a look [here](https://github.com/mohamnag/docker-orientdb).
 
+> **WARNING** unfortunately I have been expriencing serious problems using this setup on OrientDB v2.1.5. It is not yet clear to me if problem is the setup or the new bugs introduced in this version, however I currently suggest agains using this image for production on OrientDB versions except v2.0.15. Instead you may use the single instance setup if your are in need of upgrading to v2.1.5.
+
+## Versions
+Currently following versions could be run using this image:
+ - image tagged `2.0.15` runs OrientDB `2.0.15`
+ - image tagged `2.1.5` runs OrientDB `2.1.5`
+
+## DB Service
 > **WARNING** this setup does not encrypt messages sent between DB instances, and is meant to be used INSIDE a secured network.
 
 - Before starting read (skim) this: https://hazelcast.com/resources/amazon-ec2-deployment-guide/
