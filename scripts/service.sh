@@ -8,8 +8,8 @@ echo Discovered Availability Zone: ${EC2_AVAIL_ZONE}
 EC2_REGION="`echo \"${EC2_AVAIL_ZONE}\" | sed -e 's:\([0-9][0-9]*\)[a-z]*\$:\\1:'`"
 echo Discovered Region: ${EC2_REGION}
 
-ORIENTDB_NODE_NAME=$(hostname)
-echo Setting Node Name: ${ORIENTDB_NODE_NAME}
+#ORIENTDB_NODE_NAME=$(hostname)
+echo Using Node Name: ${ORIENTDB_NODE_NAME}
 
 # we handle replacing root pass here, because otherwise a guest user will also be created
 sed -i "s|ORIENTDB_ROOT_PASSWORD|${ORIENTDB_ROOT_PASSWORD}|" ${ORIENTDB_HOME}/config/orientdb-server-config.xml
